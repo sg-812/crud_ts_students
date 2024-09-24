@@ -1,7 +1,7 @@
+import { Types } from "mongoose";
 import { AuthDocument, authModel } from "../model/Auth.model.js";
-// import { AbstractClass } from "../../../helper/abstractClass/AbstractClass.repository.js";
-// import { Document, FilterQuery, Model, Types } from "mongoose";
-export class AuthRepository  {
+
+export default class AuthRepository  {
 
   // find existing user
    async findUser(query: Object){
@@ -16,7 +16,7 @@ export class AuthRepository  {
   }
 
   // save user
-  async save(data: Object) {
+  async save(data: Object) : Promise<AuthDocument | null>{
     try {
       return await authModel.create(data);
     } catch (err) {
@@ -25,45 +25,45 @@ export class AuthRepository  {
   }
 
   // fetch all user
-  // async getAll(): Promise<ModelType[]> {
-  //   try {
-  //     return await this.modelName.find().exec();
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+  async getAll() {
+    try {
+      return await authModel.find().exec();
+    } catch (error) {
+      throw error;
+    }
+  }
 
   // delete user
-  // async deleteById(id: string | Types.ObjectId): Promise<ModelType | null> {
-  //   try {
-  //     return await this.modelName.findByIdAndDelete(id).exec();
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+  async deleteById(id: string | Types.ObjectId ): Promise<AuthDocument | null> {
+    try {
+      return await authModel.findByIdAndDelete(id).exec();
+    } catch (error) {
+      throw error;
+    }
+  }
 
   //find user by ID
-  // async findById(id: string | Types.ObjectId): Promise<ModelType | null> {
-  //   try {
-  //     return await this.modelName.findById(id).exec();
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+  async findById(id: string | Types.ObjectId): Promise<AuthDocument | null> {
+    try {
+      return await authModel.findById(id).exec();
+    } catch (error) {
+      throw error;
+    }
+  }
 
   //edit user by id
-  // async updateById(
-  //   id: string | Types.ObjectId,
-  //   data: Partial<ModelType>
-  // ): Promise<ModelType | null> {
-  //   try {
-  //     return await this.modelName
-  //       .findByIdAndUpdate(id, data, { new: true })
-  //       .exec();
-  //   } catch (error) {
-  //     throw error;
-  //   }
-  // }
+  async updateById(
+    id: string | Types.ObjectId,
+    data: Partial<AuthDocument>
+  ): Promise<AuthDocument | null> {
+    try {
+      return await authModel
+        .findByIdAndUpdate(id, data, { new: true })
+        .exec();
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 export const authRepo = new AuthRepository();
