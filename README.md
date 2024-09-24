@@ -8,3 +8,14 @@ As in package.json   "type": "module", in added, so import will be done using im
 outDir is used for deploying purpose, when you will run the command npm run dev, it will create a dist folder]
 
 util is used for common functions.
+
+
+Work flow:
+
+server-> Routes -> Controller -> Repository 
+
+For database configuration config folder in app
+
+For datatype setup  Interface folder
+
+For common functions utlis of helper

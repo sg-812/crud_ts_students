@@ -2,6 +2,7 @@
 export interface IResponse {
     success: boolean,
     message: string,
-    status: number
-    data?: any
+    status: number,
+    data?: any,
+    error?:any
 }
